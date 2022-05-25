@@ -10,11 +10,14 @@ function Profile() {
 
 
   useEffect(() => {
+    keycloak?.loadUserInfo().then(info => {
+      console.log("info", info);
+    })
+
     keycloak?.loadUserProfile().then(profile => {
-      console.log(profile);
       setProfile(profile)
     }).catch(err => {
-      setError(err.message);
+      err && setError(err.message);
     })
   }, []);
 
@@ -50,6 +53,8 @@ function Profile() {
           </tr>
         </tbody>
       </table>}
+      <p>{keycloak?.refreshToken}</p>
+      <p>{keycloak?.token}</p>
     </div>
   );
 }

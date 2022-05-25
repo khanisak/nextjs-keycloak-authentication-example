@@ -23,7 +23,7 @@ function Provider(props: IProviderProps) {
     const init = async () => {
       try {
         const keycloak = new Keycloak();
-        const auth = await keycloak.init({ onLoad: 'check-sso', checkLoginIframe: false });
+        const auth = await keycloak.init({ onLoad: 'login-required', checkLoginIframe: false });
         setK(keycloak);
         setAuthenticated(auth);
       } catch (err) {
